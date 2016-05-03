@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="margL">
+<h1>ABOUT</h1>
+</div>
+<div class="textset">
+<p>My name is Frank and I'm user <a href="http://tilde.town/~fr4nk">fr4nk</a> at the geocities-like cite <a href="http://tilde.town/">tilde.town</a>. I made this website to experiment with a number of (new-to-me) website technologies. This includes but is not limited to: 
+  <ul>
+    <li>Flask - Python Web "MicroFramework"</li>
+    <li>AJAX</li>
+    <li>JavaScript</li>
+    <li>vis.js</li>
+  </ul>
+All analysis of the user data employs the Python pandas module. 
+</div>
+{% endblock %}
+

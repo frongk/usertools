@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script src="{{ url_for('static', filename='createData.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js" ></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css" rel="stylesheet" type="text/css"/>
+<script type=text/javascript>
+ $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+        a: $('input[name="username"]').val()
+      }, function(data) {
+        $("#usrM").text(data.result[2]);
+        $("#idxM").text(data.result[3]);
+        $("#sumM").text(data.result[4]);
+        var container = document.getElementById('result');
+        var dataset = genDataSet(data.result);
+        var options = {
+            start: 0,
+            end: 23,
+            width: '100%',
+            shaded: {
+                orientation: 'bottom'
+            },
+            dataAxis: {left: {title: {text: data.result[2]}}}
+        };
+        if (typeof Graph2d == 'undefined') {
+          var Graph2d = new vis.Graph2d(container, dataset,options);
+        } else {
+          var Graph2d = new vis.Graph2d(container, dataset, options).redraw();
+        }
+      });
+      return false;
+    });
+  });
+  
+  /*function unwrapDict(data) {
+    for (var key in data.result) {
+      if (data.result.hasOwnProperty(key)) {
+        ;
+      }
+    }
+  }*/
+</script>
+<div class="margL">
+<h1>USERFINDER/userfriend</h1>
+<p>Analyze <a href="http://tilde.town">tilde.town</a> IRC logs to find when someone is usually talking. Track them down and have a lovely conversation! Add multiple usernames to compare active times. All times are in UTC. Enter 'all' to see a summary of the activity of the main channel for all usuers.</p>
+<p><input type=text size=30 name=username placeholder="Enter User Name"><br><br><br>
+<a class=btn href=#userIn id=calculate>Find Your Friend!</a><br><br></p>
+<div><p class="outF">
+Username: 
+<span class="outF"id="usrM"></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Most Active Time: 
+<span class="outF" id="idxM"></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Total Messages: 
+<span class="outF" id="sumM"></span>
+</p></div>
+<div id="result" class="outF"></div>
+</div>
+{% endblock %}

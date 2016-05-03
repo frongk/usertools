@@ -1,0 +1,12 @@
+
+function genDataSet(inData) {
+    //Create Dataset
+    var options = {}
+    var data = new vis.DataSet(options);
+
+    // add items
+    var arrayLength = inData[0].length;
+    for (var i = 0; i < arrayLength; i++) {
+	alert(inData[0][i]);
+    }
+}

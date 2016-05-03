@@ -1,0 +1,35 @@
+body {
+    background-color:white;
+    padding:0px;
+    border:0px;
+}
+
+h1 {
+    font-family:"arial", "sans-serif";
+    font-size:48pt;
+    margin-top:20px;
+}
+
+p {
+    font-family:"arial", "sans-serif";
+}
+
+.margL {
+    margin-left:50px;
+}
+
+a {
+    background: #3498db;
+    border-radius: 28px;
+    font-family: "arial", "sans-serif";
+    color: #ffffff;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+a:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+}

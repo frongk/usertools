@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class = "margL">
+       <h1>WEATHER TIME CHANNEL</h1>
+       <button onclick="getLocation()">Get Your Weather!!!</button> 
+<!--       {% for Line in weatherStream %}
+       <p>{{ Line }}<br></p>
+       {% endfor %}
+-->
+    </div>
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script>
+      function getLocation() {
+         if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(changeSource);
+         } else {
+            x.innerHTML = "UNSUPPORTED SYSTEM";
+         }
+      }
+      
+      function changeSource(position) {
+         linkk = "http://forecast.weather.gov/MapClick.php?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&unit=0&lg=english&FcstType=text&TextType=1";
+         $.getJSON($SCRIPT_ROOT + '/loc','in_url', linkk.val());
+      }
+    </script>
+
+{% endblock %}
